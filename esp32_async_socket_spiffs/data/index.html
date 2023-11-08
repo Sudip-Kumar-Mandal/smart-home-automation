@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home Automation</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="bootstrap_min.css" type="text/css">
+  <style>
+    .carousel-item img {
+      height: 250px;
+    }
+
+  </style>
+</head>
+<body class="bg-black bg-gradient" id="html_body">
+
+  
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <h1 class="position-absolute top-50 start-50 translate-middle">Smart Home Automation</h1>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/esp32_1.jpg" class="d-block object-fit-cover opacity-25 w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="images/esp32_2.jpg" class="d-block object-fit-cover opacity-25 w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="images/esp32_macro.jpg" class="d-block object-fit-cover opacity-25 w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="m-3 text-center">---</div>
+  
+  <div class="container-fluid p-5 text-center sm-w-75 md-w-75">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xxl-8">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card h-100">
+              <canvas id="myChart1"></canvas>
+              <div class="progress mt-3 mx-3">
+                <div class="progress-bar" id="touchProgress1" style="width: 75%"></div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Temperature</h5>
+                <p class="card-text">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M160 64c-26.5 0-48 21.5-48 48V276.5c0 17.3-7.1 31.9-15.3 42.5C86.2 332.6 80 349.5 80 368c0 44.2 35.8 80 80 80s80-35.8 80-80c0-18.5-6.2-35.4-16.7-48.9c-8.2-10.6-15.3-25.2-15.3-42.5V112c0-26.5-21.5-48-48-48zM48 112C48 50.2 98.1 0 160 0s112 50.1 112 112V276.5c0 .1 .1 .3 .2 .6c.2 .6 .8 1.6 1.7 2.8c18.9 24.4 30.1 55 30.1 88.1c0 79.5-64.5 144-144 144S16 447.5 16 368c0-33.2 11.2-63.8 30.1-88.1c.9-1.2 1.5-2.2 1.7-2.8c.1-.3 .2-.5 .2-.6V112zM208 368c0 26.5-21.5 48-48 48s-48-21.5-48-48c0-20.9 13.4-38.7 32-45.3V144c0-8.8 7.2-16 16-16s16 7.2 16 16V322.7c18.6 6.6 32 24.4 32 45.3z"/></svg>
+                </p>
+                <span class="my-1 inline" id="sensorData1">0</span>
+                <span class="my-1 inline">&deg;C</span>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <canvas id="myChart2"></canvas>
+              <div class="progress mt-3 mx-3">
+                <div class="progress-bar" id="touchProgress2" style="width: 75%"></div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Humidity</h5>
+                <p class="card-text">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M192 512C86 512 0 426 0 320C0 228.8 130.2 57.7 166.6 11.7C172.6 4.2 181.5 0 191.1 0h1.8c9.6 0 18.5 4.2 24.5 11.7C253.8 57.7 384 228.8 384 320c0 106-86 192-192 192zM96 336c0-8.8-7.2-16-16-16s-16 7.2-16 16c0 61.9 50.1 112 112 112c8.8 0 16-7.2 16-16s-7.2-16-16-16c-44.2 0-80-35.8-80-80z"/></svg>
+                </p>
+                <span class="my-1 inline" id="sensorData2">0</span>
+                <span class="my-1 inline">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-3 text-center">---</div>
+
+  <div class="container-fluid p-5 text-center sm-w-75 md-w-75">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-9 col-md-6 col-xxl-4">
+        <div class="row row-cols-1">
+          <div class="col p-2 border border-3 border-secondary" style="min-height:100px;" id="Backyard">
+            <button class="btn btn-dark h-100 w-100" disabled>
+              <div>Backyard</div>
+              <div></div>
+            </button>
+          </div>
+          <div class="col">
+            <div class="row row-cols-2">
+              <div class="col">
+                <div class="row row-cols-1">
+                  <div class="col p-2 border border-3 border-secondary" style="min-height:250px;" id="Bedroom 1">
+                    <button class="btn btn-warning h-100 w-100" onclick="lightClick('Bedroom 1')">
+                      <div>Bedroom 1</div>
+                      <div>Lights: ON</div>
+                    </button>
+                  </div>
+                  <div class="col p-2 border border-3 border-secondary" style="min-height:100px;" id="Bathroom">
+                    <button class="btn btn-warning h-100 w-100" onclick="lightClick('Bathroom')">
+                      <div>Bathroom</div>
+                      <div>Lights: ON</div>
+                    </button>
+                  </div>
+                  <div class="col p-2 border border-3 border-secondary" style="min-height:250px;" id="Bedroom 2">
+                    <button class="btn btn-warning h-100 w-100" onclick="lightClick('Bedroom 2')">
+                      <div>Bedroom 2</div>
+                      <div>Lights: ON</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row row-cols-1">
+                  <div class="col p-2 border border-3 border-secondary" style="min-height:150px;" id="Kitchen">
+                    <button class="btn btn-warning h-100 w-100" onclick="lightClick('Kitchen')">
+                      <div>Kitchen</div>
+                      <div>Lights: ON</div>
+                    </button>
+                  </div>
+                  <div class="col p-2 border border-3 border-secondary" style="min-height:150px;" id="Dining">
+                    <button class="btn btn-warning h-100 w-100" onclick="lightClick('Dining')">
+                      <div>Dining</div>
+                      <div>Lights: ON</div>
+                    </button>
+                  </div>
+                  <div class="col p-2 border border-3 border-secondary" style="min-height:200px;" id="Living">
+                    <button class="btn btn-warning h-100 w-100" onclick="lightClick('Living')">
+                      <div>Living</div>
+                      <div>Lights: ON</div>
+                    </button>
+                  </div>
+                  <div class="col p-2 border border-3 border-secondary" style="min-height:100px;" id="Door">
+                    <button class="btn btn-dark h-100 w-100" onclick="doorClick()">
+                      <div>Door</div>
+                      <div>Close</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-bg-dark text-center mt-5">
+    <div class="p-3 m-0">
+      <b>Made by:</b> Sudip Kumar Mandal
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="bootstrap_min.js"></script>
+  <script type="text/javascript" src="chart.js"></script>
+  <script type="text/javascript" src="websocket_script.js"></script>
+</body>
+</html>
